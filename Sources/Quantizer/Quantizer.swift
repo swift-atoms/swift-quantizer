@@ -4,7 +4,6 @@ public import Rounding
 public struct Quantizer<Scalar: BinaryFloatingPoint> {
     public let quantum: Scalar
     public let rounding: Rounding
-    public typealias Error = Quantizer::Failure
 
     public init(quantum: Scalar, rounding: Rounding = .nearest(.away)) throws(Error) {
         guard quantum.isFinite, quantum > 0 else { throw .invalidQuantum }

@@ -5,7 +5,7 @@ public protocol Quantized {
 }
 
 extension Quantized {
-    public static func quantize(_ value: Scalar) throws(Failure) -> Scalar {
+    public static func quantize(_ value: Scalar) throws(Quantizer<Scalar>.Error) -> Scalar {
         try Quantizer(quantum: quantum)(value)
     }
 
