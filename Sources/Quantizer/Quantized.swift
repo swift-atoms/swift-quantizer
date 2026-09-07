@@ -1,4 +1,4 @@
-/// A domain with a uniform grid. Its quantum must be finite and strictly positive.
+
 public protocol Quantized {
     associatedtype Scalar: BinaryFloatingPoint
     static var quantum: Scalar { get }
