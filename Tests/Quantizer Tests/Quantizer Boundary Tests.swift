@@ -1,7 +1,9 @@
 import Quantizer
 import Testing
 
-private enum Quarter: Quantized {
+private enum Quarter: Quantized {}
+
+extension Quarter {
     static var quantum: Double { 0.25 }
 }
 

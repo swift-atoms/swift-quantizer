@@ -10,8 +10,9 @@ public struct Quantizer<Scalar: BinaryFloatingPoint> {
         self.quantum = quantum
         self.rounding = rounding
     }
+}
 
-
+extension Quantizer {
     public func coordinate(for value: Scalar) throws(Error) -> Scalar {
         guard value.isFinite else { throw .nonfinite }
         let coordinate = value / quantum
@@ -41,6 +42,6 @@ public struct Quantizer<Scalar: BinaryFloatingPoint> {
     }
 }
 
-extension Quantizer: Swift.Sendable where Scalar: Swift.Sendable {}
+extension Quantizer: Swift::Sendable where Scalar: Swift::Sendable {}
 
-extension Quantizer: Swift.Equatable {}
+extension Quantizer: Swift::Equatable {}
