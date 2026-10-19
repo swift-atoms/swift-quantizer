@@ -30,4 +30,12 @@ import Testing
         let coarse = try Quantizer<Double>(quantum: .greatestFiniteMagnitude, rounding: .up)
         #expect(throws: Quantizer<Double>.Error.outOfRange) { try coarse.value(at: 2) }
     }
+
+    @Test func `Any FloatingPoint scalar quantizes, not only binary ones`() throws {
+        func snap<Scalar: FloatingPoint>(_ value: Scalar, to quantum: Scalar, rounding: Rounding) throws -> Scalar {
+            try Quantizer(quantum: quantum, rounding: rounding)(value)
+        }
+        #expect(try snap(1_555.33, to: 1, rounding: .up) == 1_556)
+        #expect(try snap(Float(9_237.64), to: 1, rounding: .down) == 9_237)
+    }
 }
