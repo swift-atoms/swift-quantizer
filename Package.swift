@@ -22,15 +22,17 @@ let package = Package(
         .package(
             url: "https://github.com/swift-atoms/swift-rounding.git",
             branch: "main"
-        ),
+        )
     ],
     targets: [
         .target(
             name: "Quantizer",
-            dependencies: [.product(
-                name: "Rounding",
-                package: "swift-rounding"
-            )],
+            dependencies: [
+                .product(
+                    name: "Rounding",
+                    package: "swift-rounding"
+                )
+            ],
             path: "Sources/Quantizer"
         ),
         .target(
@@ -47,7 +49,7 @@ let package = Package(
             name: "Quantizer Tests",
             dependencies: [
                 .target(name: "Quantizer"),
-                .target(name: "Quantizer Test Support")
+                .target(name: "Quantizer Test Support"),
             ],
             path: "Tests/Quantizer Tests"
         ),
@@ -56,14 +58,15 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    target.swiftSettings = (target.swiftSettings ?? []) + [
-        .strictMemorySafety(),
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportVisibility"),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances"),
-        .enableExperimentalFeature("Lifetimes"),
-        .treatAllWarnings(as: .error),
-    ]
+    target.swiftSettings =
+        (target.swiftSettings ?? []) + [
+            .strictMemorySafety(),
+            .enableUpcomingFeature("ExistentialAny"),
+            .enableUpcomingFeature("InternalImportsByDefault"),
+            .enableUpcomingFeature("MemberImportVisibility"),
+            .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+            .enableUpcomingFeature("InferIsolatedConformances"),
+            .enableExperimentalFeature("Lifetimes"),
+            .treatAllWarnings(as: .error),
+        ]
 }
