@@ -1,6 +1,5 @@
 public import Rounding
 
-
 public struct Quantizer<Scalar: FloatingPoint> {
     public let quantum: Scalar
     public let rounding: Rounding
@@ -17,8 +16,7 @@ extension Quantizer {
         guard value.isFinite else { throw .nonfinite }
         let coordinate = value / quantum
         guard coordinate.isFinite else { throw .outOfRange }
-        do { return try rounding(coordinate) }
-        catch { throw .inexact }
+        do { return try rounding(coordinate) } catch { throw .inexact }
     }
 
     public func callAsFunction(_ value: Scalar) throws(Error) -> Scalar {
@@ -26,7 +24,6 @@ extension Quantizer {
         guard result.isFinite else { throw .outOfRange }
         return result
     }
-
 
     public func value<T: BinaryInteger>(at ticks: T) throws(Error) -> Scalar {
         let coordinate = Scalar(ticks)
